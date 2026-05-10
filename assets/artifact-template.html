@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{PROJECT_NAME}} Architecture Artifact</title>
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, theme: "default", securityLevel: "loose" });
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f8fb;
+      --panel: #ffffff;
+      --text: #1d2433;
+      --muted: #5d6678;
+      --line: #d9deea;
+      --accent: #2563eb;
+      --accent-soft: #e7eefc;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.55;
+    }
+
+    header {
+      padding: 32px clamp(20px, 5vw, 64px) 24px;
+      background: var(--panel);
+      border-bottom: 1px solid var(--line);
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    header p {
+      margin: 0;
+      max-width: 960px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px clamp(20px, 5vw, 64px);
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+
+    nav a {
+      flex: 0 0 auto;
+      padding: 7px 10px;
+      border-radius: 6px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 30px 0 56px;
+    }
+
+    section {
+      margin: 0 0 32px;
+      padding: 28px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 24px 0 10px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    .diagram {
+      width: 100%;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .diagram img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .mermaid {
+      margin: 16px 0;
+      padding: 16px;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f1f4f9;
+      font-weight: 650;
+    }
+
+    code {
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #eef2f7;
+      font-size: 0.92em;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .meta span {
+      padding: 5px 8px;
+      border-radius: 6px;
+      background: var(--accent-soft);
+      color: #174ea6;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>{{PROJECT_NAME}} Architecture</h1>
+    <p>{{SCOPE_SUMMARY}}</p>
+    <div class="meta">
+      <span>Generated: {{GENERATION_DATE}}</span>
+      <span>Source scope: {{SOURCE_SCOPE}}</span>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#components">Components</a>
+    <a href="#flows">Flows</a>
+    <a href="#sequences">Sequences</a>
+    <a href="#evidence">Evidence</a>
+  </nav>
+
+  <main>
+    <section id="overview">
+      <h2>Architecture Overview</h2>
+      <p>{{ARCHITECTURE_SUMMARY}}</p>
+      <div class="diagram">
+        <img src="assets/architecture-overview.png" alt="Architecture overview">
+      </div>
+    </section>
+
+    <section id="components">
+      <h2>Component Map</h2>
+      {{COMPONENT_TABLE}}
+    </section>
+
+    <section id="flows">
+      <h2>Core Flowcharts</h2>
+      {{FLOWCHARTS}}
+    </section>
+
+    <section id="sequences">
+      <h2>Core Sequence Diagrams</h2>
+      {{SEQUENCE_DIAGRAMS}}
+    </section>
+
+    <section id="evidence">
+      <h2>Evidence And Open Questions</h2>
+      {{EVIDENCE_AND_GAPS}}
+    </section>
+  </main>
+</body>
+</html>

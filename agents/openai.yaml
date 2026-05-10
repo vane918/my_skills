@@ -1,0 +1,4 @@
+interface:
+  display_name: "Source Architecture Docs"
+  short_description: "Generate architecture docs and demo artifacts"
+  default_prompt: "Use $source-architecture-docs to analyze this project and generate architecture documentation plus an HTML demo artifact."
